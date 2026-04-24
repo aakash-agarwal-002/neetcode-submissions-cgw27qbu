@@ -1,0 +1,16 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        used = [False]*len(nums)
+        def backtrack(curr, used):
+            if len(curr) == len(nums):
+                res.append(curr.copy())
+            
+            for i in range(len(nums)):
+                if not used[i]:
+                    used[i] = True
+                    backtrack(curr+[nums[i]], used)
+                    used[i]=False
+        
+        backtrack([], used)
+        return res
